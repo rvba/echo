@@ -1,0 +1,6 @@
+[submodule "echo/umber"]
+	path = echo/umber
+	url = https://www.github.com/rvba/umber.git
+[submodule "echo/verse"]
+	path = echo/verse
+	url = https://www.github.com/rvba/verse
