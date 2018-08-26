@@ -1,0 +1,210 @@
+{
+  "Uuid": "936fffce-1411-4941-bc2c-3f2cfaea1ae8",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Echo_In",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.IO.FileSystem.ReadText@var",
+      "Id": "bd6e66fc14de45eaae1ef8420ecc5ce4",
+      "Inputs": [
+        {
+          "Id": "beac14edb39d4898b0319438d19846bc",
+          "Name": "file",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fffb364a472c48c6ae7f560c043ba3ab",
+          "Name": "str",
+          "Description": "Contenu du fichier texte.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Lit un fichier texte et renvoie le contenu sous la forme d'une chaîne.\n\nFileSystem.ReadText (file: var): string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "da0afbe5e8e74c4ea05431c573fc8ee6",
+      "Inputs": [
+        {
+          "Id": "b1e5f83e1d8549c4af1caac0601789ee",
+          "Name": "path",
+          "Description": "Chemin d'accès au fichier.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "67e5394d359548bdbed47a4af6f92b15",
+          "Name": "file",
+          "Description": "Objet de fichier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crée un objet de fichier à partir d'un chemin d'accès."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Activer la prise en charge de Python et charger la bibliothèque DesignScript\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom System.IO import File\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Les entrées effectuées dans ce noeud sont stockées sous forme de liste dans les variables IN.\r\ndataEnteringNode = IN\r\n\r\n# Placer votre code au-dessous de cette ligne\r\n\r\n# Affectez la sortie à la variable OUT.\r\n#OUT = \"C:/Temp/\" + \"ec_vertex_\" +  IN[0] + \".txt\"\r\n#OUT = IN[1] + File.separator + \"ec_vertex_\" +  IN[0] + \".txt\"\r\nname = IN[0]\r\nOUT = \"C:/Temp/\" + \"rex_vertex_\" + name + \".txt\"",
+      "VariableInputPorts": true,
+      "Id": "02dde41dd1784d6ea891c1872851a495",
+      "Inputs": [
+        {
+          "Id": "9f7068868c284a2c869254bd0dcf46bd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a71f7cb3d31f467f96509854b17300be",
+          "Name": "OUT",
+          "Description": "Résultat du script Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Exécute un script IronPython intégré."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Plane",
+      "Id": "326f60c4ac5040aab0d6fa7a6f97a0f2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "813f8ac9dedf4b94b24356435fe10ffe",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crée une chaîne."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "67e5394d359548bdbed47a4af6f92b15",
+      "End": "beac14edb39d4898b0319438d19846bc",
+      "Id": "3fb0dbfc21c54c669427a7e3bde3178a"
+    },
+    {
+      "Start": "a71f7cb3d31f467f96509854b17300be",
+      "End": "b1e5f83e1d8549c4af1caac0601789ee",
+      "Id": "831e31475f0c4b4db0f400caa4922954"
+    },
+    {
+      "Start": "813f8ac9dedf4b94b24356435fe10ffe",
+      "End": "9f7068868c284a2c869254bd0dcf46bd",
+      "Id": "212ff66677d54ef983f12f8e0af103cc"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.1.5055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Aperçu en arrière-plan",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "FileSystem.ReadText",
+        "Id": "bd6e66fc14de45eaae1ef8420ecc5ce4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 866.52725555441259,
+        "Y": 290.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File From Path",
+        "Id": "da0afbe5e8e74c4ea05431c573fc8ee6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 718.46159863902653,
+        "Y": 291.10044347414191
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "02dde41dd1784d6ea891c1872851a495",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 540.51769518035667,
+        "Y": 292.89510635516297
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "326f60c4ac5040aab0d6fa7a6f97a0f2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 406.66666666666674,
+        "Y": 310.61375915724693
+      }
+    ],
+    "Annotations": [],
+    "X": -237.33333333333326,
+    "Y": -42.666666666666657,
+    "Zoom": 1.0
+  }
+}
