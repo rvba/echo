@@ -93,9 +93,9 @@ if os.name == 'nt':
 	if platform.architecture()[0] == '64bit':
 		arch = 64
 		if os.path.dirname(__file__) == "":
-			path = "\\..\\echo\\libecho64.dll"
+			path = "\\..\\echo\\build\\libecho64.dll"
 		else:
-			path = os.path.dirname(__file__) + "\\..\\echo\\libecho64.dll"
+			path = os.path.dirname(__file__) + "\\..\\echo\\build\\libecho64.dll"
 	else:
 		arch = 32
 		path = os.path.dirname(__file__) + "\\libecho32.dll"
