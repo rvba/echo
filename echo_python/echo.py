@@ -917,7 +917,10 @@ def parse_data(name):
 							A = int(l[0])
 							B = int(l[1])
 							C = int(l[2])
-							D = int(l[3])
+							if l[3] == "-":
+								D = -1
+							else:
+								D = int(l[3])
 							mesh_face_set(mesh,i,A,B,C,D)
 							i = i + 1 
 
